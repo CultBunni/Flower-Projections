@@ -1,16 +1,16 @@
-<!-- These are the libraries i copy + pasted from the BlazePose documentation page -->
-<!-- https://github.com/tensorflow/tfjs-models/tree/master/pose-detection/src/blazepose_mediapipe -->
+
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 <script>
-  /* global poseDetection */
+ 
+bgColor: pink
+   
+  
   let gif, detector, video
   
-  // this function creates a video element which streams our webcam feed and adds it to the page
-  // we asked OpenAI's codex to write this function (which we then refactored a bit)
-  // https://platform.openai.com/codex-javascript-sandbox
+  
   async function addVideo() {
     const video = document.createElement('video')
     video.setAttribute('autoplay', '')
@@ -21,22 +21,20 @@
     video.srcObject = stream    
     return video
   }
-  
-  // this function loads the AI model
+
   async function setupModel () {
-    // here we pick which pre-trained model we want to use
+    
     const model = poseDetection.SupportedModels.BlazePose
-    // here we setup some "configuration" settings
     const detectorConfig = {
       runtime: 'mediapipe',
       solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/pose'
     }
-    // we combine the two to create the AI "detctor" function
+    
     const detector = await poseDetection.createDetector(model, detectorConfig)
     return detector
   }
   
-  // our draw function (ie animation loop)
+  
   async function draw () {
     // we first use the detector AI function to predict our "pose" based on the video frame
 		const poses = await detector.estimatePoses(video)
@@ -47,7 +45,6 @@
     	const nose = poses[0].keypoints[0]
       // nose object looks like: { x: number, y: number, z: number, score: number, name: "nose" }
       console.log(nose) 
-      // so we use the nose.x and nose.y to change the position of the gif
     	gif.style.left = nose.x - gif.width / 2.5 + 'px'
       gif.style.top = nose.y - gif.height / 2.5 + 'px'
     }
