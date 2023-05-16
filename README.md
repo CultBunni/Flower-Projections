@@ -7,5 +7,13 @@
 
 
 
+Image I have been trying to place on nose >
+![flower](pink_glitter_flower.gif)
 
-![pink_glitter_flower.gif]
+
+
+Progress Goals:
+- Successfully upload gif image
+- Replace CD with flower 
+- Create code to calc distance between shoulder blades
+- depending on distance ^, different object appers.
